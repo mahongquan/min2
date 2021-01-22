@@ -109,6 +109,7 @@ function setAudioMutedOnCreate (tabId, muted) {
   }
   webviews.bindEvent('did-navigate', listener)
 }
+
 const webviews = {
   viewList: [], // [tabId]
   viewFullscreenMap: {}, // tabId, isFullscreen
@@ -116,7 +117,7 @@ const webviews = {
   placeholderRequests: [],
   asyncCallbacks: {},
   internalPages: {
-    error: urlParser.getFileURL(window.globalArgs["home"] + '/pages/error/index.html')
+    error: urlParser.getFileURL(__dirname + '/pages/error/index.html')
   },
   events: [],
   IPCEvents: [],
@@ -199,7 +200,14 @@ const webviews = {
     if (tabData.private === true) {
       var partition = tabId.toString() // options.tabId is a number, which remote.session.fromPartition won't accept. It must be converted to a string first
     }
-    var preload_url=window.globalArgs["home"]+'/dist/preload.js';
+    console.log("__dirname");
+    console.log(__dirname);
+    var d1=__dirname
+    var arr1=d1.split(path.sep);
+    arr1.pop();
+    var d2=arr1.join(path.sep);
+    // var u1=urlParser.getFileURL(d2)
+    var preload_url=d2+'/dist/preload.js';
     console.log(preload_url);
     //should be "E:\\multi\\min/dist/preload.js"
     ipc.send('createView', {

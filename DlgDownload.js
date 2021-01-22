@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import data from './Data';
+// import data from './Data';
 var { shell } = window.require('electron'); //
 export default class App extends React.Component {
   onClick = () => {

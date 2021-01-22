@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import data from './Data';
+// import data from './Data';
 var { shell } = window.require('electron'); //
 export default class App extends React.Component {
   onClick = () => {
@@ -43,7 +43,7 @@ export default class App extends React.Component {
                 >
                   作者:
                 </td>
-                <td>{data.config.author.name}</td>
+                <td>mahongquan</td>
               </tr>
               <tr>
                 <td
@@ -56,7 +56,7 @@ export default class App extends React.Component {
                 >
                   电子邮箱:
                 </td>
-                <td>{data.config.author.email}</td>
+                <td>mahongquan@sina.com</td>
               </tr>
               <tr>
                 <td
@@ -70,7 +70,7 @@ export default class App extends React.Component {
                   网站:
                 </td>
                 <td>
-                  <a onClick={this.onClick}>{data.config.website}</a>
+                  <a onClick={this.onClick}>http://mahonguqn.github.io</a>
                 </td>
               </tr>
             </tbody>
