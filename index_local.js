@@ -1,5 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 // const fs = require('fs');
 const path = require('path');
 // function fileExist(p) {
@@ -64,6 +62,7 @@ function l (stringId) {
     return languages['en-US'].translations[stringId]
   }
 }
+
 window.l = l
 window.getCurrentLanguage = getCurrentLanguage
 window.userLanguage = getCurrentLanguage()
@@ -187,9 +186,67 @@ window.addEventListener('load', function () {
     }
   }, true)
 })
-let App = require('./Browser').default;
-ReactDOM.render(<App />, document.getElementById('root'));
-// window.app_path=__dirname;
+document.querySelectorAll('[data-string]').forEach(function (el) {
+    var str = l(el.getAttribute('data-string'))
+    if (typeof str === 'string') {
+      el.textContent = str
+    } else if (str && str.unsafeHTML && el.hasAttribute('data-allowHTML')) {
+      el.innerHTML = str.unsafeHTML
+    }
+})
+document.querySelectorAll('[data-label]').forEach(function (el) {
+    var str = l(el.getAttribute('data-label'))
+    if (typeof str === 'string') {
+      el.setAttribute('title', str)
+      el.setAttribute('aria-label', str)
+    } else {
+      throw new Error('invalid data-label value: ' + str)
+    }
+})
+
+const TaskList  = require("./js/tabState/task.js")
+
+function initializeTabState () {
+  window.tasks = new TaskList()
+  window.tabs = undefined
+}
+
+initializeTabState()
+
+require('./js/navbar/tabActivity.js').initialize()
+require('./js/navbar/tabColor.js').initialize()
+require('./js/navbar/goBackButton.js').initialize()
+require('./js/downloadManager.js').initialize()
+require('./js/webviewMenu.js').initialize()
+require('./js/contextMenu.js').initialize()
+require('./js/menuRenderer.js').initialize()
+require('./js/defaultKeybindings.js').initialize()
+require('./js/pdfViewer.js').initialize()
+require('./js/autofillSetup.js').initialize()
+require('./js/passwordManager/passwordManager.js').initialize()
+require('./js/passwordManager/passwordCapture.js').initialize()
+require('./js/passwordManager/passwordViewer.js').initialize()
+require('./js/util/theme.js').initialize()
+require('./js/userscripts.js').initialize()
+
+// default searchbar plugins
+
+require('./js/searchbar/placesPlugin.js').initialize()
+require('./js/searchbar/instantAnswerPlugin.js').initialize()
+require('./js/searchbar/openTabsPlugin.js').initialize()
+require('./js/searchbar/bangsPlugin.js').initialize()
+require('./js/searchbar/searchSuggestionsPlugin.js').initialize()
+require('./js/searchbar/placeSuggestionsPlugin.js').initialize()
+require('./js/searchbar/updateNotifications.js').initialize()
+require('./js/searchbar/restoreTaskPlugin.js').initialize()
+require('./js/searchbar/bookmarkManager.js').initialize()
+require('./js/searchbar/developmentModeNotification.js').initialize()
+require('./js/windowControls.js');
+require('./js/searchbar/customBangs.js');
+require('./js/taskOverlay/taskOverlay.js');
+require('./js/navbar/addTabButton.js');
+require('./js/navbar/menuButton.js');
+require('./js/sessionRestore.js');
 
 
 

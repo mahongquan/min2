@@ -2,8 +2,8 @@
 
 console.log('worker started ', performance.now())
 
-importScripts('../../../node_modules/dexie/dist/dexie.min.js')
-importScripts('../../../node_modules/string_score/string_score.min.js')
+importScripts('../../node_modules/dexie/dist/dexie.min.js')
+importScripts('../../node_modules/string_score/string_score.min.js')
 importScripts('../util/database.js')
 importScripts('./fullTextSearch.js')
 importScripts('./placesSearch.js')

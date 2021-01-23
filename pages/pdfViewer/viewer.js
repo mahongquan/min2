@@ -1,4 +1,4 @@
-pdfjsLib.GlobalWorkerOptions.workerSrc = '../../../node_modules/pdfjs-dist/build/pdf.worker.js'
+pdfjsLib.GlobalWorkerOptions.workerSrc = '../../node_modules/pdfjs-dist/build/pdf.worker.js'
 
 var url = new URLSearchParams(window.location.search.replace('?', '')).get('url')
 

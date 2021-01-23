@@ -16,7 +16,15 @@ document.querySelectorAll('[data-label]').forEach(function (el) {
     }
 })
 
-require('./tabState.js');
+const TaskList  = require("./tabState/task.js")
+
+function initializeTabState () {
+  window.tasks = new TaskList()
+  window.tabs = undefined
+}
+
+initializeTabState()
+
 require('./navbar/tabActivity.js').initialize()
 require('./navbar/tabColor.js').initialize()
 require('./navbar/goBackButton.js').initialize()
